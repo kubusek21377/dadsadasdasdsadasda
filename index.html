@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Zaokrąglanie liczby</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .wynik {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Podaj liczbę:</h2>
+  <input type="number" step="any" id="liczba" placeholder="Wpisz liczbę">
+  <button onclick="zaokragl()">Zaokrągl</button>
+
+  <div class="wynik" id="informacja"></div>
+  <div class="wynik" id="najblizsza"></div>
+  <div class="wynik" id="wDol"></div>
+  <div class="wynik" id="wGore"></div>
+  <div class="wynik" id="usunUlamki"></div>
+
+  <script>
+    function zaokragl() {
+      const wartosc = document.getElementById('liczba').value;
+      const liczba = parseFloat(wartosc);
+
+      if (isNaN(liczba)) {
+        alert("Wpisz poprawną liczbę!");
+        return;
+      }
+
+      
+      if (Number.isInteger(liczba)) {
+        document.getElementById('informacja').innerText = " Wpisałeś liczbę całkowitą!";
+      } else {
+        document.getElementById('informacja').innerText = " To nie jest liczba całkowita.";
+      }
+
+      // Zaokrąglenia
+      document.getElementById('najblizsza').innerText = `Do najbliższej liczby całkowitej: ${Math.round(liczba)}`;
+      document.getElementById('wDol').innerText = `Zawsze w dół (Math.floor): ${Math.floor(liczba)}`;
+      document.getElementById('wGore').innerText = `Zawsze w górę (Math.ceil): ${Math.ceil(liczba)}`;
+      document.getElementById('usunUlamki').innerText = `Usunięcie części ułamkowej (Math.trunc): ${Math.trunc(liczba)}`;
+    }
+  </script>
+
+</body>
+</html>
